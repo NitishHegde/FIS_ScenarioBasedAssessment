@@ -1,0 +1,63 @@
+1. car and owner details based on car type
+select car_id, car_name, owner_id
+from cars
+where car_type in ("Hatchback", "SUV")
+order by car_id;
+
+2.car details based on type and name
+select car_id, car_name, car_type
+from cars
+where car_name like "Maruthi%"
+and car_type = "Sedan"
+order by car_id;
+
+3.car rental system - creating table
+create table owners
+(
+    owner_id VARCHAR(10),
+    owner_name varchar(20),
+    address varchar(20),
+    phone_no bigint,
+    email_id varchar(20),
+    primary key(owner_id)
+);
+
+4.car rental system - add column
+alter table cars
+add column car_regno varchar(10);
+
+5.cars not taken for rent
+select car_id, car_name, car_type 
+from cars
+where car_id not in (select distinct car_id from rentals);
+
+6.Concatenating details
+select concat(address, "," , city) as address
+from student
+order by address desc;
+
+7.Credential details
+select concat(owner_name, owner_id) as USERNAME, concat(left(owner_name, 3), owner_id) as PASSWORD
+from owners
+order by USERNAME;
+
+8.customer mail details
+select concat(customer_id, ' mail id is ', email_id) as customer_mail_info
+from customers;
+
+9. customer mail having gamil id
+select customer_id, customer_name, address, phone_no
+from customers
+where email_id like "%gmail%"
+order by customer_id;
+
+10. Delivery partner details based on rating
+select partner_id, partner_name, phone_no
+from delivery_partners
+where rating between 3 and 5
+order by partner_id;
+
+
+
+
+
